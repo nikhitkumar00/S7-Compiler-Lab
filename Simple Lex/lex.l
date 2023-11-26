@@ -1,6 +1,9 @@
+digit [0-9]+
+character [a-zA-Z]+
+
 %%
-[0-9]+      { printf("\nDigit\t %s\n", yytext); }
-[a-zA-Z]+   { printf("Character\t %s\n", yytext); }
+{digit}         printf("\nDigit\t %s\n", yytext);
+{character}     printf("Character\t %s\n", yytext);
 %%
 
 void main() {
