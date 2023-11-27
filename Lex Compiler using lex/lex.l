@@ -1,29 +1,42 @@
 %{
-	int character=0, digit=0, position=0, negative=0, special=0, whitespace=0;
+	FILE *fp;
 %}
+digit		[0-9]+
+header		[\t]*"#include <"[a-z]+".h>"
+bracket		[\t]*"{"|"}"|"["|"]"|"("|")"
+whitespace  [\n]
+formatspecifier	[\t]*"%"[a-zA-Z]
+comma		[,]
+quote		[\t]*"\""
+terminator	[\t]*";"
+keyword		[\t]*"int"|"float"|"char"|"void"|"if"|"else"|"for"|"while"|"do"|"printf"|"scanf"
+main		[\t]*"main()"
+identifier	[\t]*[a-zA-Z]+[0-9a-zA-Z]*
+operator	[+\-*/%=]
+comparator	[\t]*"=="|"!="|"<="|">="|"<"|">"
 
 %%
-[0-9] digit++,position++;
-[a-zA-Z] character++;
-[-][0-9] negative++,digit++;
-[<>@#$%^&*(){}"'.;] special++;
-[ \n\t] whitespace++;
+{digit} printf("\nDigit \t\t\t%s", yytext);
+{header} printf("\nHeader \t\t\t%s", yytext);
+{keyword} printf("\nKeyword \t\t%s", yytext);
+{main} printf("\nMain Function \t\t%s", yytext);
+{identifier} printf("\nIdentifier \t\t%s", yytext);
+{operator} printf("\nOperator \t\t%s", yytext);
+{comparator} printf("\nComparator \t\t%s", yytext);
+{bracket} printf("\nBracket \t\t%s", yytext);
+{terminator} printf("\nTerminator \t\t%s", yytext);
+{quote} printf("\nQuote \t\t\t%s", yytext);
+{formatspecifier} printf("\nFormat Specifier \t%s", yytext);
+{whitespace} {};
+{comma} printf("\nComma \t\t\t%s", yytext);
 %%
- 
-int main()
-{
-	yyin = fopen("input.txt","r");
-	yylex();
 
-	printf("Character count is :\t\t%d\n",character);
-	printf("Digit count is :\t\t%d\n",digit);
-	printf("Positive count is :\t\t%d\n",position);
-	printf("Negative count is :\t\t%d\n",negative);
-	printf("Special character count is :\t%d\n",special);
-	printf("Whitespace count is :\t\t%d\n",whitespace);
-}
-
-int yywrap()
+void main()
 {
-	return 1;
+	fp = fopen("input.c", "r");
+	if (fp != NULL)
+	{
+		yyin = fp;
+		yylex();
+	}
 }
