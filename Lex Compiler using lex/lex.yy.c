@@ -798,7 +798,7 @@ printf("\nDigit \t\t\t%s", yytext);
 case 2:
 YY_RULE_SETUP
 #line 20 "lex.l"
-printf("\nHeader \t\t%s", yytext);
+printf("\nHeader \t\t\t%s", yytext);
 	YY_BREAK
 case 3:
 YY_RULE_SETUP

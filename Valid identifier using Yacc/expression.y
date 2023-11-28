@@ -6,8 +6,7 @@ int flag=0;
 %token IDENTIFIER
 
 %%
-    E: IDENTIFIER
-    ;
+    E: IDENTIFIER;
 %%
 void main()
 {

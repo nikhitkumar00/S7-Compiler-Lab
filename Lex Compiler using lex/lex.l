@@ -1,19 +1,19 @@
 %{
 	FILE *fp;
 %}
-digit		[0-9]+
-header		[\t]*"#include <"[a-z]+".h>"
-bracket		[\t]*"{"|"}"|"["|"]"|"("|")"
-whitespace  [\n]
+digit			[0-9]+
+header			[\t]*"#include <"[a-z]+".h>"
+bracket			[\t]*"{"|"}"|"["|"]"|"("|")"
+whitespace  	[\n]
 formatspecifier	[\t]*"%"[a-zA-Z]
-comma		[,]
-quote		[\t]*"\""
-terminator	[\t]*";"
-keyword		[\t]*"int"|"float"|"char"|"void"|"if"|"else"|"for"|"while"|"do"|"printf"|"scanf"
-main		[\t]*"main()"
-identifier	[\t]*[a-zA-Z]+[0-9a-zA-Z]*
-operator	[+\-*/%=]
-comparator	[\t]*"=="|"!="|"<="|">="|"<"|">"
+comma			[,]
+quote			[\t]*"\""
+terminator		[\t]*";"
+keyword			[\t]*"int"|"float"|"char"|"void"|"if"|"else"|"for"|"while"|"do"|"printf"|"scanf"
+main			[\t]*"main()"
+identifier		[\t]*[a-zA-Z]+[0-9a-zA-Z]*
+operator		[+\-*/%=]
+comparator		[\t]*"=="|"!="|"<="|">="|"<"|">"
 
 %%
 {digit} printf("\nDigit \t\t\t%s", yytext);
