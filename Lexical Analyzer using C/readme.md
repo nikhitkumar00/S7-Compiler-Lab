@@ -1,4 +1,4 @@
-# Lexical Analyzer for C Code
+# Lexical Analyzer using C Code
 
 ## Overview
 This C program appears to be a simple lexical analyzer that reads a C source file ("input.c") and identifies tokens such as operators, special symbols, digits, keywords, and identifiers. The program uses basic file I/O and character manipulation to achieve lexical analysis.
