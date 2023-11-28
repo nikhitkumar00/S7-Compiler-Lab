@@ -440,7 +440,7 @@ int yy_flex_debug = 0;
 char *yytext;
 #line 1 "expression.l"
 #line 2 "expression.l"
-#include<stdio.h>
+#include <stdio.h>
 #include "y.tab.h"
 extern int yylval;
 #line 447 "lex.yy.c"
@@ -730,23 +730,23 @@ YY_RULE_SETUP
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 13 "expression.l"
+#line 12 "expression.l"
 ;
 	YY_BREAK
 case 3:
 /* rule 3 can match eol */
 YY_RULE_SETUP
-#line 14 "expression.l"
+#line 13 "expression.l"
 return 0;
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 15 "expression.l"
+#line 14 "expression.l"
 return yytext[0];
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 16 "expression.l"
+#line 15 "expression.l"
 ECHO;
 	YY_BREAK
 #line 753 "lex.yy.c"
@@ -1754,11 +1754,10 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 16 "expression.l"
+#line 15 "expression.l"
 
 
 int yywrap()
 {
     return 0;
 }
-

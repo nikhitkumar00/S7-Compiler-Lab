@@ -69,10 +69,10 @@
 /* First part of user prologue.  */
 #line 1 "expression.y"
 
-#include<stdio.h>
-int flag=0;
-int yylex();
+#include <stdio.h>
 void yyerror();
+int yylex();
+int flag = 0;
 
 #line 78 "y.tab.c"
 
@@ -1291,16 +1291,19 @@ yyreturnlab:
 
 #line 12 "expression.y"
 
+
 void main()
 {
-    printf("\nEnter Identifier: ");
+    printf("Enter a valid identifier: ");
     yyparse();
-    if(flag==0)
-        printf("\nEntered identifier is Valid\n\n");
+    if (flag == 0)
+    {
+        printf("Valid identifier");
+    }
 }
 
 void yyerror()
 {
-    printf("\nEntered identifier is Invalid\n\n");
-    flag=1;
+    printf("Invalid identifier");
+    flag = 1;
 }

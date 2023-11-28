@@ -1,5 +1,5 @@
 %{
-#include<stdio.h>
+#include <stdio.h>
 #include "y.tab.h"
 extern int yylval;
 %}
@@ -9,7 +9,6 @@ extern int yylval;
     yylval = atoi(yytext);
     return IDENTIFIER;
 }
-
 [\t]    ;
 [\n]    return 0;
 .       return yytext[0];
