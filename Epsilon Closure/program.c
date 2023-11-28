@@ -1,66 +1,62 @@
 #include <stdio.h>
 #include <string.h>
 
-char result[20][20], copy[3], states[20][20];
+#define MAX_STATES 20
+#define STATE_LENGTH 3
 
-void add_state(char a[3], int i)
-{
-    strcpy(result[i], a);
+char states[MAX_STATES][STATE_LENGTH];
+char result[MAX_STATES][STATE_LENGTH];
+
+void addState(char state[STATE_LENGTH], int *count) {
+    strcpy(result[(*count)++], state);
 }
 
-void display(int n)
-{
-    int k = 0;
+void displayClosure(char copy[STATE_LENGTH], int count) {
     printf("\n Epsilon closure of %s = { ", copy);
-    while (k < n)
-    {
-        printf(" %s", result[k]);
-        k++;
+    for (int i = 0; i < count; i++) {
+        printf(" %s", result[i]);
     }
     printf(" } \n");
 }
 
-int main()
-{
-    FILE *INPUT;
-    INPUT = fopen("input.dat", "r");
-    char state[3];
-    int end, i = 0, n, k = 0;
-    char state1[3], input[3], state2[3];
-    printf("n Enter the no of states: ");
-    scanf("%d", &n);
-    printf("n Enter the states: ");
-    for (k = 0; k < 3; k++)
-    {
-        scanf("%s", states[k]);
+int main() {
+    FILE *inputFile;
+    inputFile = fopen("input.dat", "r");
+
+    int numStates;
+    printf("Enter the number of states: ");
+    scanf("%d", &numStates);
+
+    printf("Enter the states: ");
+    for (int i = 0; i < numStates; i++) {
+        scanf("%s", states[i]);
     }
 
-    for (k = 0; k < n; k++)
-    {
-        i = 0;
-        strcpy(state, states[k]);
-        strcpy(copy, state);
-        add_state(state, i++);
-        while (1)
-        {
-            end = fscanf(INPUT, "%s%s%s", state1, input, state2);
-            if (end == EOF)
-            {
+    for (int i = 0; i < numStates; i++) {
+        int count = 0;
+        char currentState[STATE_LENGTH];
+        strcpy(currentState, states[i]);
+        addState(currentState, &count);
+
+        while (1) {
+            char nextState1[STATE_LENGTH], input[3], nextState2[STATE_LENGTH];
+            int end = fscanf(inputFile, "%s%s%s", nextState1, input, nextState2);
+
+            if (end == EOF) {
                 break;
             }
 
-            if (strcmp(state, state1) == 0)
-            {
-                if (strcmp(input, "e") == 0)
-                {
-                    add_state(state2, i++);
-                    strcpy(state, state2);
-                }
+            if (strcmp(currentState, nextState1) == 0 && strcmp(input, "e") == 0) {
+                addState(nextState2, &count);
+                strcpy(currentState, nextState2);
             }
         }
-        display(i);
-        rewind(INPUT);
+
+        displayClosure(states[i], count);
+        rewind(inputFile);
     }
+
+    fclose(inputFile);
 
     return 0;
 }
