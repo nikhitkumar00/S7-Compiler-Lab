@@ -1,6 +1,8 @@
 %{
 #include<stdio.h>
 int flag=0;
+int yylex();
+void yyerror();
 %}
 
 %token IDENTIFIER

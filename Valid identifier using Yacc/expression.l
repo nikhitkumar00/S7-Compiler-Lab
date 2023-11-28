@@ -10,9 +10,9 @@ extern int yylval;
     return IDENTIFIER;
 }
 
-[\t] ;
-[\n] return 0;
-. return yytext[0];
+[\t]    ;
+[\n]    return 0;
+.       return yytext[0];
 %%
 
 int yywrap()
