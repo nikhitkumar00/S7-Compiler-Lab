@@ -37,5 +37,4 @@ F -> ( E ) | i
 4. The program will display the parsing steps and indicate whether the string is successfully parsed or if there is an error.
 
 ## Note
-
 This is a basic implementation of a recursive descent parser for a simple arithmetic expression grammar. It assumes correct input and provides a minimal example for educational purposes. In a more complete implementation, error handling and recovery mechanisms would be added for robustness.
