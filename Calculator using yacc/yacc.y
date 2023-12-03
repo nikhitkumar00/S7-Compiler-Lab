@@ -28,5 +28,4 @@ void yyerror();
  void yyerror()
  {
     printf("Syntax error\n");
-    flag = 1;
  }

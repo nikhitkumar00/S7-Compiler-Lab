@@ -72,9 +72,8 @@
 #include <stdio.h>
 int yylex();
 void yyerror();
-int flag = 0;
 
-#line 78 "y.tab.c"
+#line 77 "y.tab.c"
 
 # ifndef YY_CAST
 #  ifdef __cplusplus
@@ -546,7 +545,7 @@ static const yytype_int8 yytranslate[] =
 /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_int8 yyrline[] =
 {
-       0,    14,    14,    15,    16,    17,    18,    19,    20
+       0,    13,    13,    14,    15,    16,    17,    18,    19
 };
 #endif
 
@@ -1108,49 +1107,49 @@ yyreduce:
   switch (yyn)
     {
   case 2: /* ArithExpr: E  */
-#line 14 "yacc.y"
-             {printf("Result: %d\n", yyval);}
-#line 1114 "y.tab.c"
+#line 13 "yacc.y"
+                        {printf("Result: %d\n", yyval);}
+#line 1113 "y.tab.c"
     break;
 
   case 3: /* E: E '+' E  */
-#line 15 "yacc.y"
-         {yyval = yyvsp[-2] + yyvsp[0];}
-#line 1120 "y.tab.c"
+#line 14 "yacc.y"
+                        {yyval = yyvsp[-2] + yyvsp[0];}
+#line 1119 "y.tab.c"
     break;
 
   case 4: /* E: E '-' E  */
-#line 16 "yacc.y"
-        {yyval = yyvsp[-2] - yyvsp[0];}
-#line 1126 "y.tab.c"
+#line 15 "yacc.y"
+                        {yyval = yyvsp[-2] - yyvsp[0];}
+#line 1125 "y.tab.c"
     break;
 
   case 5: /* E: E '*' E  */
-#line 17 "yacc.y"
-        {yyval = yyvsp[-2] * yyvsp[0];}
-#line 1132 "y.tab.c"
+#line 16 "yacc.y"
+                        {yyval = yyvsp[-2] * yyvsp[0];}
+#line 1131 "y.tab.c"
     break;
 
   case 6: /* E: E '/' E  */
-#line 18 "yacc.y"
-        {yyval = yyvsp[-2] / yyvsp[0];}
-#line 1138 "y.tab.c"
+#line 17 "yacc.y"
+                        {yyval = yyvsp[-2] / yyvsp[0];}
+#line 1137 "y.tab.c"
     break;
 
   case 7: /* E: '(' E ')'  */
-#line 19 "yacc.y"
-          {yyval = yyvsp[-1];}
-#line 1144 "y.tab.c"
+#line 18 "yacc.y"
+                        {yyval = yyvsp[-1];}
+#line 1143 "y.tab.c"
     break;
 
   case 8: /* E: NUMBER  */
-#line 20 "yacc.y"
-         {yyval = yyvsp[0];}
-#line 1150 "y.tab.c"
+#line 19 "yacc.y"
+                        {yyval = yyvsp[0];}
+#line 1149 "y.tab.c"
     break;
 
 
-#line 1154 "y.tab.c"
+#line 1153 "y.tab.c"
 
       default: break;
     }
@@ -1343,7 +1342,7 @@ yyreturnlab:
   return yyresult;
 }
 
-#line 21 "yacc.y"
+#line 20 "yacc.y"
 
 
  void main()
@@ -1355,5 +1354,4 @@ yyreturnlab:
  void yyerror()
  {
     printf("Syntax error\n");
-    flag = 1;
  }
