@@ -1,6 +1,6 @@
 %{
- #include<stdio.h>
- int flag=0;
+	#include<stdio.h>
+	int flag=0;
 %}
 
 %token NUMBER
