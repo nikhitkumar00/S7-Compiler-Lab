@@ -2,7 +2,6 @@
 #include <stdio.h>
 int yylex();
 void yyerror();
-int flag = 0;
 %}
 
 %token NUMBER
