@@ -44,8 +44,7 @@ int Edash()
 {
     if (*cursor == '+')
     {
-        printf("%-12s E' -> + T E'\n", cursor);
-        cursor++;
+        printf("%-12s E' -> + T E'\n", cursor++);
         return T() && Edash();
     }
     else
@@ -67,8 +66,7 @@ int Tdash()
 {
     if (*cursor == '*')
     {
-        printf("%-12s T' -> * F T'\n", cursor);
-        cursor++;
+        printf("%-12s T' -> * F T'\n", cursor++);
         return F() && Tdash();
     }
     else
@@ -83,14 +81,12 @@ int F()
 {
     if (*cursor == '(')
     {
-        printf("%-12s F -> ( E )\n", cursor);
-        cursor++;
+        printf("%-12s F -> ( E )\n", cursor++);
         return E() && (*cursor == ')' ? cursor++ && SUCCESS : FAILED);
     }
     else if (*cursor == 'i')
     {
-        printf("%-12s F -> i\n", cursor);
-        cursor++;
+        printf("%-12s F -> i\n", cursor++);
         return SUCCESS;
     }
     else
