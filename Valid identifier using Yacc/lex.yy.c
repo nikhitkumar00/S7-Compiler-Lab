@@ -440,9 +440,9 @@ int yy_flex_debug = 0;
 char *yytext;
 #line 1 "expression.l"
 #line 2 "expression.l"
-#include <stdio.h>
-#include "y.tab.h"
-extern int yylval;
+    #include <stdio.h>
+    #include "y.tab.h"
+    extern int yylval;
 #line 447 "lex.yy.c"
 #line 448 "lex.yy.c"
 
@@ -724,9 +724,9 @@ case 1:
 YY_RULE_SETUP
 #line 8 "expression.l"
 {
-    yylval = atoi(yytext);
-    return IDENTIFIER;
-}
+                            yylval = atoi(yytext);
+                            return IDENTIFIER;
+                        }
 	YY_BREAK
 case 2:
 YY_RULE_SETUP

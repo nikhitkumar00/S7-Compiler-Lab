@@ -16,9 +16,7 @@ void main()
     printf("Enter a valid identifier: ");
     yyparse();
     if (flag == 0)
-    {
         printf("Valid identifier\n");
-    }
 }
 
 void yyerror()
