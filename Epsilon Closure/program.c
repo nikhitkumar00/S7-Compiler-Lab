@@ -11,7 +11,7 @@ void add_state(char a[3], int i)
 void display(int n)
 {
     int k = 0;
-    printf("\nEpsilon closure of %s = { ", copy);
+    printf("\nEpsilon closure of %s = {", copy);
     while (k < n)
     {
         printf(" %s", result[k]);
