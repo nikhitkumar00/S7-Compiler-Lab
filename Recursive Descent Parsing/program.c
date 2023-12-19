@@ -17,65 +17,93 @@ char *cursor;
 #define FAILED 0
 
 // Main function
-void main() {
+void main()
+{
     printf("The Grammars are :\nGrammar rule: E -> T E'\nGrammar rule: E' -> + T E' | $\nGrammar rule: T -> F T'\nGrammar rule: T' -> * F T' | $\nGrammar rule: F -> ( E ) | i\n\n");
     scanf("%s", input);
     cursor = input;
 
-    if (E() && *cursor == '\0') {
+    if (E() && *cursor == '\0')
+    {
         printf("\n\nPARSING COMPLETED SUCCESSFULLY\n\n");
-    } else {
+    }
+    else
+    {
         printf("\n\nPARSING FAILED\n\n");
     }
 }
 
 // E -> T E'
-int E() {
+int E()
+{
     printf("\nE -> T E'");
-    return T() && Edash() ? SUCCESS : FAILED;
+    return T() && Edash();
 }
 
 // T -> F T'
-int T() {
+int T()
+{
     printf("\nT -> F T'");
-    return F() && Tdash() ? SUCCESS : FAILED;
+    return F() && Tdash();
 }
 
 // E' -> + T E' | $
-int Edash() {
-    if (*cursor == '+') {
+int Edash()
+{
+    if (*cursor == '+')
+    {
         printf("\nE' -> + T E'");
         cursor++;
-        return T() && Edash() ? SUCCESS : FAILED;
-    } else {
+        return T() && Edash();
+    }
+    else
+    {
         printf("\nE' -> $");
         return SUCCESS;
     }
 }
 
 // T' -> * F T' | $
-int Tdash() {
-    if (*cursor == '*') {
+int Tdash()
+{
+    if (*cursor == '*')
+    {
         printf("\nT' -> * F T'");
         cursor++;
-        return F() && Tdash() ? SUCCESS : FAILED;
-    } else {
+        return F() && Tdash();
+    }
+    else
+    {
         printf("\nT' -> $");
         return SUCCESS;
     }
 }
 
 // F -> ( E ) | i
-int F() {
-    if (*cursor == '(') {
+int F()
+{
+    if (*cursor == '(')
+    {
         printf("\nF -> ( E )");
         cursor++;
-        return E() && *cursor == ')' ? SUCCESS : FAILED;
-    } else if (*cursor == 'i') {
+        if (E() && *cursor == ')')
+        {
+            cursor++;
+            return SUCCESS;
+        }
+        else
+        {
+            return FAILED;
+        }
+    }
+    else if (*cursor == 'i')
+    {
         printf("\nF -> i");
         cursor++;
         return SUCCESS;
-    } else {
+    }
+    else
+    {
         return FAILED;
     }
 }
