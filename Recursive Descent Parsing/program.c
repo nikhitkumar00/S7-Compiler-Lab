@@ -1,96 +1,81 @@
 #include <stdio.h>
-#include <string.h>
+#include <stdlib.h>
 
+// Function prototypes
+int E();
+int Edash();
+int T();
+int Tdash();
+int F();
+
+// Global variables
+char input[20];
+char *cursor;
+
+// Constants
 #define SUCCESS 1
 #define FAILED 0
 
-const char *cursor;
-char string[64];
+// Main function
+void main() {
+    printf("The Grammars are :\nGrammar rule: E -> T E'\nGrammar rule: E' -> + T E' | $\nGrammar rule: T -> F T'\nGrammar rule: T' -> * F T' | $\nGrammar rule: F -> ( E ) | i\n\n");
+    scanf("%s", input);
+    cursor = input;
 
-// Function prototypes
-int E(), Edash(), T(), Tdash(), F();
-
-int main()
-{
-    puts("Enter the string");
-    scanf("%s", string);
-    cursor = string;
-    puts("\nInput         Action");
-    puts("-----------------------");
-
-    if (E() && *cursor == '\0')
-    {
-        puts("-----------------------");
-        puts("String is successfully parsed");
-        return 0;
-    }
-    else
-    {
-        puts("-----------------------");
-        puts("Error in parsing String");
-        return 1;
+    if (E() && *cursor == '\0') {
+        printf("\n\nPARSING COMPLETED SUCCESSFULLY\n\n");
+    } else {
+        printf("\n\nPARSING FAILED\n\n");
     }
 }
 
-// Grammar rule: E -> T E'
-int E()
-{
-    printf("%-12s E -> T E'\n", cursor);
-    return T() && Edash();
+// E -> T E'
+int E() {
+    printf("\nE -> T E'");
+    return T() && Edash() ? SUCCESS : FAILED;
 }
 
-// Grammar rule: E' -> + T E' | $
-int Edash()
-{
-    if (*cursor == '+')
-    {
-        printf("%-12s E' -> + T E'\n", cursor++);
-        return T() && Edash();
-    }
-    else
-    {
-        printf("%-12s E' -> $\n", cursor);
+// T -> F T'
+int T() {
+    printf("\nT -> F T'");
+    return F() && Tdash() ? SUCCESS : FAILED;
+}
+
+// E' -> + T E' | $
+int Edash() {
+    if (*cursor == '+') {
+        printf("\nE' -> + T E'");
+        cursor++;
+        return T() && Edash() ? SUCCESS : FAILED;
+    } else {
+        printf("\nE' -> $");
         return SUCCESS;
     }
 }
 
-// Grammar rule: T -> F T'
-int T()
-{
-    printf("%-12s T -> F T'\n", cursor);
-    return F() && Tdash();
-}
-
-// Grammar rule: T' -> * F T' | $
-int Tdash()
-{
-    if (*cursor == '*')
-    {
-        printf("%-12s T' -> * F T'\n", cursor++);
-        return F() && Tdash();
-    }
-    else
-    {
-        printf("%-12s T' -> $\n", cursor);
+// T' -> * F T' | $
+int Tdash() {
+    if (*cursor == '*') {
+        printf("\nT' -> * F T'");
+        cursor++;
+        return F() && Tdash() ? SUCCESS : FAILED;
+    } else {
+        printf("\nT' -> $");
         return SUCCESS;
     }
 }
 
-// Grammar rule: F -> ( E ) | i
-int F()
-{
-    if (*cursor == '(')
-    {
-        printf("%-12s F -> ( E )\n", cursor++);
-        return E() && (*cursor == ')' ? cursor++ && SUCCESS : FAILED);
-    }
-    else if (*cursor == 'i')
-    {
-        printf("%-12s F -> i\n", cursor++);
+// F -> ( E ) | i
+int F() {
+    if (*cursor == '(') {
+        printf("\nF -> ( E )");
+        cursor++;
+        return E() && *cursor == ')' ? SUCCESS : FAILED;
+    } else if (*cursor == 'i') {
+        printf("\nF -> i");
+        cursor++;
         return SUCCESS;
-    }
-    else
-    {
+    } else {
         return FAILED;
     }
 }
