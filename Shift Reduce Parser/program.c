@@ -3,13 +3,6 @@
 
 int main()
 {
-    /*
-    E -> c
-    R -> bEb
-    S -> aRa
-    INPUT STRING => abcba
-    */
-
     char inputString[10] = {'a', 'b', 'c', 'b', 'a'};
     char stack[10];
     int stackPointer = 0, inputPointer = 0, inputLength = strlen(inputString);
