@@ -18,11 +18,9 @@ int main()
     for (int i = 0; i < inputLength; i++)
     {
         /* put the next input character onto the stack and update pointers */
-        stack[stackPointer] = inputString[inputPointer];
-        stackPointer++;
+        stack[stackPointer++] = inputString[inputPointer];
         stack[stackPointer] = '\0';
-        inputString[inputPointer] = ' ';
-        inputPointer++;
+        inputString[inputPointer++] = ' ';
 
         /* print the current state and action */
         printf("%s\t\t%s\t\t%s\n", stack, inputString, "SHIFT");
