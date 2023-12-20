@@ -1,100 +1,74 @@
 #include <stdio.h>
 #include <string.h>
 #include <ctype.h>
-
-void input();
-void output();
-void change(int p, char *res);
-void constant();
+#include <stdlib.h>
 
 struct expr
 {
-    char op[2], op1[5], op2[5], res[5];
-    int flag;
-} arr[10];
+    char operator[5];
+    char operand1[5];
+    char operand2[5];
+    char result[5];
+    int optimized;
+} expression[10];
 
-int n;
-
-int main()
+void main()
 {
-    input();
-    constant();
-    output();
-    return 0;
-}
+    int numberOfExpressions;
+    char strresult[10];
 
-void input()
-{
-    int i;
-    printf("Enter the maximum no. of expressions: ");
-    scanf("%d", &n);
-    printf("Enter the input:\n");
-    for (i = 0; i < n; i++)
+    printf("\nEnter the number of expressions: ");
+    scanf("%d", &numberOfExpressions);
+
+    for (int i = 0; i < numberOfExpressions; i++)
     {
-        scanf("%s", arr[i].op);
-        scanf("%s", arr[i].op1);
-        scanf("%s", arr[i].op2);
-        scanf("%s", arr[i].res);
-        arr[i].flag = 0;
+        scanf("%s\t%s\t%s\t%s", expression[i].operator, expression[i].operand1, expression[i].operand2, expression[i].result);
+        expression[i].optimized = 0;
     }
-}
 
-void constant()
-{
-    int i;
-    int op1, op2, res;
-    char op, res1[5];
-    for (i = 0; i < n; i++)
+    for (int i = 0; i < numberOfExpressions; i++)
     {
-        if (isdigit(arr[i].op1[0]) && isdigit(arr[i].op2[0]) || strcmp(arr[i].op, "=") == 0)
+        if (isdigit(expression[i].operand1[0]) && isdigit(expression[i].operand2[0]) || expression[i].operator[0] == '=')
         {
-            op1 = atoi(arr[i].op1);
-            op2 = atoi(arr[i].op2);
-            op = arr[i].op[0];
-            switch (op)
+            int op1, op2, result;
+            op1 = atoi(expression[i].operand1);
+            op2 = atoi(expression[i].operand2);
+            switch (expression[i].operator[0])
             {
             case '+':
-                res = op1 + op2;
+                result = op1 + op2;
                 break;
             case '-':
-                res = op1 - op2;
+                result = op1 - op2;
                 break;
             case '*':
-                res = op1 * op2;
+                result = op1 * op2;
                 break;
             case '/':
-                res = op1 / op2;
+                result = op1 / op2;
                 break;
             case '=':
-                res = op1;
+                result = op1;
                 break;
             }
-            sprintf(res1, "%d", res);
-            arr[i].flag = 1;
-            change(i, res1);
+            expression[i].optimized = 1;
+            sprintf(strresult, "%d", result);
+
+            for (int j = i + 1; j < numberOfExpressions; j++)
+            {
+                if (strcmp(expression[j].operand1, expression[i].result) == 0)
+                {
+                    strcpy(expression[j].operand1, strresult);
+                }
+                if (strcmp(expression[j].operand2, expression[i].result) == 0)
+                {
+                    strcpy(expression[j].operand2, strresult);
+                }
+            }
         }
     }
-}
-
-void output()
-{
-    int i = 0;
-    printf("\nOptimized code is:\n");
-    for (i = 0; i < n; i++)
+    for (int i = 0; i < numberOfExpressions; i++)
     {
-        if (!arr[i].flag)
-            printf("%s %s %s %s\n", arr[i].op, arr[i].op1, arr[i].op2, arr[i].res);
-    }
-}
-
-void change(int p, char *res)
-{
-    int i;
-    for (i = p + 1; i < n; i++)
-    {
-        if (strcmp(arr[p].res, arr[i].op1) == 0)
-            strcpy(arr[i].op1, res);
-        else if (strcmp(arr[p].res, arr[i].op2) == 0)
-            strcpy(arr[i].op2, res);
+        printf("\n%s\t%s\t%s\t%s", expression[i].operator, expression[i].operand1, expression[i].operand2, expression[i].result);
     }
 }
