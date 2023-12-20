@@ -1,6 +1,7 @@
 %{
 	FILE *fp;
 %}
+
 digit			[0-9]+
 header			[\t]*"#include <"[a-z]+".h>"
 bracket			[\t]*"{"|"}"|"["|"]"|"("|")"
