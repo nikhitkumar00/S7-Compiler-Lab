@@ -36,14 +36,14 @@ void main()
 // E -> T E'
 int E()
 {
-    printf("\nE -> T E'");
+    printf("\nE -> T E'\t\t%s", cursor);
     return T() && Edash();
 }
 
 // T -> F T'
 int T()
 {
-    printf("\nT -> F T'");
+    printf("\nT -> F T'\t\t%s", cursor);
     return F() && Tdash();
 }
 
@@ -52,13 +52,13 @@ int Edash()
 {
     if (*cursor == '+')
     {
-        printf("\nE' -> + T E'");
+        printf("\nE' -> + T E'\t\t%s", cursor);
         cursor++;
         return T() && Edash();
     }
     else
     {
-        printf("\nE' -> $");
+        printf("\nE' -> $\t\t%s", cursor);
         return SUCCESS;
     }
 }
@@ -68,13 +68,13 @@ int Tdash()
 {
     if (*cursor == '*')
     {
-        printf("\nT' -> * F T'");
+        printf("\nT' -> * F T'\t\t%s", cursor);
         cursor++;
         return F() && Tdash();
     }
     else
     {
-        printf("\nT' -> $");
+        printf("\nT' -> $\t\t%s", cursor);
         return SUCCESS;
     }
 }
@@ -84,7 +84,7 @@ int F()
 {
     if (*cursor == '(')
     {
-        printf("\nF -> ( E )");
+        printf("\nF -> ( E )\t\t%s", cursor);
         cursor++;
         if (E() && *cursor == ')')
         {
@@ -98,7 +98,7 @@ int F()
     }
     else if (*cursor == 'i')
     {
-        printf("\nF -> i");
+        printf("\nF -> i\t\t%s", cursor);
         cursor++;
         return SUCCESS;
     }

@@ -2,12 +2,12 @@
 #include <stdlib.h>
 
 // Function prototypes
-int roll(unsigned int n);
-int unroll(unsigned int n);
+int roll(int n);
+int unroll(int n);
 
 int main()
 {
-    unsigned int n;
+    int n;
     int x, ch;
 
     // Input for N
@@ -34,18 +34,15 @@ int main()
             x = unroll(n);
             printf("Count of 1's: %d\n", x);
             break;
-        case 3:
-            exit(0);
         default:
             printf("\nWrong Choice\n");
         }
     }
-
     return 0;
 }
 
 // Function to count set bits using loop roll
-int roll(unsigned int n)
+int roll(int n)
 {
     int bits = 0, i = 0;
 
@@ -66,7 +63,7 @@ int roll(unsigned int n)
 }
 
 // Function to count set bits using loop unroll
-int unroll(unsigned int n)
+int unroll(int n)
 {
     int bits = 0, i = 0;
 
