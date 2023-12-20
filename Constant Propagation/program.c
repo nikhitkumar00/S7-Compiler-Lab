@@ -9,7 +9,6 @@ struct expr
     char operand1[5];
     char operand2[5];
     char result[5];
-    int optimized;
 } expression[10];
 
 void main()
@@ -23,7 +22,6 @@ void main()
     for (int i = 0; i < numberOfExpressions; i++)
     {
         scanf("%s\t%s\t%s\t%s", expression[i].operator, expression[i].operand1, expression[i].operand2, expression[i].result);
-        expression[i].optimized = 0;
     }
 
     for (int i = 0; i < numberOfExpressions; i++)
@@ -51,7 +49,6 @@ void main()
                 result = op1;
                 break;
             }
-            expression[i].optimized = 1;
             sprintf(strresult, "%d", result);
 
             for (int j = i + 1; j < numberOfExpressions; j++)
