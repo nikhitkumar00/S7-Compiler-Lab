@@ -158,7 +158,7 @@ enum yysymbol_kind_t
   YYSYMBOL_8_ = 8,                         /* '('  */
   YYSYMBOL_9_ = 9,                         /* ')'  */
   YYSYMBOL_YYACCEPT = 10,                  /* $accept  */
-  YYSYMBOL_ArithExpr = 11,                 /* ArithExpr  */
+  YYSYMBOL_RESULT = 11,                    /* RESULT  */
   YYSYMBOL_E = 12                          /* E  */
 };
 typedef enum yysymbol_kind_t yysymbol_kind_t;
@@ -562,7 +562,7 @@ static const char *yysymbol_name (yysymbol_kind_t yysymbol) YY_ATTRIBUTE_UNUSED;
 static const char *const yytname[] =
 {
   "\"end of file\"", "error", "\"invalid token\"", "NUMBER", "'+'", "'-'",
-  "'*'", "'/'", "'('", "')'", "$accept", "ArithExpr", "E", YY_NULLPTR
+  "'*'", "'/'", "'('", "')'", "$accept", "RESULT", "E", YY_NULLPTR
 };
 
 static const char *
@@ -596,7 +596,7 @@ static const yytype_int8 yypact[] =
 static const yytype_int8 yydefact[] =
 {
        0,     8,     0,     0,     2,     0,     1,     0,     0,     0,
-       0,     7,     3,     4,     5,     6
+       0,     7,     6,     5,     3,     4
 };
 
 /* YYPGOTO[NTERM-NUM].  */
@@ -1106,33 +1106,33 @@ yyreduce:
   YY_REDUCE_PRINT (yyn);
   switch (yyn)
     {
-  case 2: /* ArithExpr: E  */
+  case 2: /* RESULT: E  */
 #line 13 "yacc.y"
-                        {printf("Result: %d\n", yyval);}
+                        {printf("%d",yyval);}
 #line 1113 "y.tab.c"
     break;
 
-  case 3: /* E: E '+' E  */
+  case 3: /* E: E '*' E  */
 #line 14 "yacc.y"
-                        {yyval = yyvsp[-2] + yyvsp[0];}
+                        {yyval = yyvsp[-2]*yyvsp[0];}
 #line 1119 "y.tab.c"
     break;
 
-  case 4: /* E: E '-' E  */
+  case 4: /* E: E '/' E  */
 #line 15 "yacc.y"
-                        {yyval = yyvsp[-2] - yyvsp[0];}
+                        {yyval = yyvsp[-2]/yyvsp[0];}
 #line 1125 "y.tab.c"
     break;
 
-  case 5: /* E: E '*' E  */
+  case 5: /* E: E '-' E  */
 #line 16 "yacc.y"
-                        {yyval = yyvsp[-2] * yyvsp[0];}
+                        {yyval = yyvsp[-2]-yyvsp[0];}
 #line 1131 "y.tab.c"
     break;
 
-  case 6: /* E: E '/' E  */
+  case 6: /* E: E '+' E  */
 #line 17 "yacc.y"
-                        {yyval = yyvsp[-2] / yyvsp[0];}
+                        {yyval = yyvsp[-2]+yyvsp[0];}
 #line 1137 "y.tab.c"
     break;
 
@@ -1345,13 +1345,13 @@ yyreturnlab:
 #line 20 "yacc.y"
 
 
- void main()
- {
-    printf("Enter an expression: ");
-    yyparse();
- }
+void main()
+{
+   printf("\nEnter an arithematic expression :\n");
+   yyparse();
+}
 
- void yyerror()
- {
-    printf("Syntax error\n");
- }
+void yyerror()
+{
+   printf("ERROR");
+}

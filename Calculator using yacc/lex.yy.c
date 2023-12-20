@@ -440,7 +440,7 @@ int yy_flex_debug = 0;
 char *yytext;
 #line 1 "lex.l"
 #line 2 "lex.l"
-#include <stdio.h>
+#include<stdio.h>
 #include "y.tab.h"
 extern int yylval;
 #line 447 "lex.yy.c"
